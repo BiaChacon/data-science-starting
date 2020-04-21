@@ -23,7 +23,7 @@ total = movies_without_rating.title.count()
 print("Total movies without rating:"+str(total))
 print("\nList of movies without rating:")
 
-for i in df.title:
+for i in movies_without_rating.title:
     print(" -",i)
 
 """# Desafio 2
@@ -73,7 +73,7 @@ Plot the appearance chart for each genre.
 import matplotlib.pyplot as plt
 
 plt.figure(figsize=(15,8))
-generos.plot(kind='bar',title='Genres occurrence')
+genre.plot(kind='bar',title='Genres occurrence')
 plt.xlabel("Genres")
 plt.ylabel("Occurrence")
 plt.xticks(rotation=45)
