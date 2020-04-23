@@ -75,7 +75,7 @@ sns.scatterplot(x="title_year", y="profit", data = war2)
 
 """Observando o gráfico pode-se observar que dois filmes pré segunda guerra com o lucro alto. O nome dos respectivos filmes estão abaixo."""
 
-movie_war2 = war2.sort_values("profit", ascending=True).head(2)
+movie_war2 = war2.sort_values("profit", ascending=False).head(2)
  movie_war2.movie_title
 
 """# Desafio 5 
@@ -113,6 +113,7 @@ pos = movie_loss.query("budget > 0 | gross > 0").dropna()
 pos = pos.query("title_year > 2000")
 
 sns.pairplot(data = pos[["gross", "budget", "profit", "title_year"]])
+pos[["gross", "budget", "profit", "title_year"]].corr()
 
 """A correlação mais forte está entre o valor arrecadado e o lucro (**groos X profit**), pois quanto maior o valor arrecadado maior o lucro do filme.
 
