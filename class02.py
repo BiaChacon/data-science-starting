@@ -140,6 +140,5 @@ years.head()
 mm.head()
 
 year_mean = movies_years.groupby("year")["rating_mean"].mean().round(2)
-plt.figure(figsize=(30, 10))
-year_mean.plot(kind="bar")
-plt.show()
+plt.figure(figsize=(18, 8))
+year_mean.plot()
