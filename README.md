@@ -12,8 +12,8 @@ Activities of the #QuarentenaDados by [Alura](https://github.com/alura-cursos)
 ## Datasets
 - Base with [Movie Lens titles and genres](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/ml-latest-small/movies.csv).
 - [Movie Lens notes](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/ml-latest-small/ratings.csv) base.
-- Base [IMDB 5000](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/movie_metadata.csv) .
-- Base with [ENEM data](https://raw.githubusercontent.com/guilhermesilveira/enem-2018/master/MICRODADOS_ENEM_2018_SAMPLE_43278.csv) .
+- Base [IMDB 5000](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/movie_metadata.csv).
+- Base with [ENEM data](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/microdados_enem/MICRODADOS_ENEM_2018_SAMPLE_43278.csv).
 - On the [MovieLens](https://grouplens.org/datasets/movielens/) website you will find the complete base of films.
 
 
