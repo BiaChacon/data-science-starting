@@ -42,10 +42,11 @@ corr = data.corr()
 
 mask = np.zeros_like(corr)
 mask[np.triu_indices_from(mask)] = True
+labels = ['Ciências da Natureza', 'Ciências Humanas', 'Linguagens e Códigos', 'Matemática', 'Redação']
 with sns.axes_style("white"):
     f, ax = plt.subplots(figsize=(11, 9))
     ax = sns.heatmap(corr, mask=mask, vmin=0.5, vmax=0.8, 
-    annot=True, square=True)
+    annot=True, square=True, xticklabels=labels, yticklabels=labels)
 corr
 
 """## Desafio 3
@@ -79,6 +80,7 @@ Remover todos os zeros. Tomar o cuidado que no desafio 1 já tomamos decisões l
 """
 
 sns.pairplot(dados_sem_zero)
+dados_sem_zero.head()
 
 """## Desafio 5
 Quais questões tiveram mais erros (análise sobre o gabarito x acertos x erros)
@@ -95,19 +97,47 @@ def correcao(prova, gabarito, respostas):
 
 matematica = dados[['TX_GABARITO_MT', 'CO_PROVA_MT', 'TX_RESPOSTAS_MT']].dropna()
 matematica, rn = correcao(matematica, 'TX_GABARITO_MT', 'TX_RESPOSTAS_MT')
-matematica.groupby("CO_PROVA_MT")[[*rn]].apply(lambda x: x[x == 0].count()/x.count()).describe().head()
+matematica.groupby("CO_PROVA_MT")[[*rn]].apply(lambda x: x[x == 0].count()/x.count())
 
 linguagens = dados[['TX_GABARITO_LC', 'CO_PROVA_LC', 'TX_RESPOSTAS_LC']].dropna()
 linguagens, rn = correcao(linguagens, 'TX_GABARITO_LC', 'TX_RESPOSTAS_LC')
-linguagens.groupby("CO_PROVA_LC")[[*rn]].apply(lambda x: x[x == 0].count()/x.count()).describe().head()
+linguagens.groupby("CO_PROVA_LC")[[*rn]].apply(lambda x: x[x == 0].count()/x.count())
 
 humanas = dados[['TX_GABARITO_CH', 'CO_PROVA_CH', 'TX_RESPOSTAS_CH']].dropna()
 humanas, rn = correcao(humanas, 'TX_GABARITO_CH', 'TX_RESPOSTAS_CH')
-humanas.groupby("CO_PROVA_CH")[[*rn]].apply(lambda x: x[x == 0].count()/x.count()).describe().head()
+humanas.groupby("CO_PROVA_CH")[[*rn]].apply(lambda x: x[x == 0].count()/x.count())
 
 natureza = dados[['TX_GABARITO_CN', 'CO_PROVA_CN', 'TX_RESPOSTAS_CN']].dropna()
 natureza, rn = correcao(natureza, 'TX_GABARITO_CN', 'TX_RESPOSTAS_CN')
-natureza.groupby("CO_PROVA_CN")[[*rn]].apply(lambda x: x[x == 0].count()/x.count()).describe().head()
+natureza.groupby("CO_PROVA_CN")[[*rn]].apply(lambda x: x[x == 0].count()/x.count())
+
+def corrige_questoes(aluno, materia):
+    respostas = aluno.get(f'TX_RESPOSTAS_{materia}')
+    gabarito = aluno.get(f'TX_GABARITO_{materia}')
+    
+    return pd.Series([int(a==b) for a, b in zip(respostas, gabarito)])
+
+"""Analisando a prova de uma cor e matéria especifica."""
+
+cor = 'azul'
+nome_materia = 'Ciências da Natureza'
+materia = 'CN'
+cod_cor = '447'
+
+"""Usando essas variaveis pode-se gerar o grafico da matéria e cor especica no qual deseja-se analisar."""
+
+prova_cor = dados.query(f'CO_PROVA_{materia} == {cod_cor}')
+matriz_acertos = prova_cor.apply(corrige_questoes, materia=materia, axis=1)
+
+
+total_acertos_por_questao = pd.DataFrame(matriz_acertos.sum())
+total_acertos_por_questao.reset_index(inplace=True)
+total_acertos_por_questao.columns = ['Questão', 'Número de Acertos']
+total_acertos_por_questao['Questão'] = total_acertos_por_questao['Questão'] + 1
+plt.figure(figsize=(18, 8))
+ax = sns.barplot(x='Questão', y='Número de Acertos', data=total_acertos_por_questao)
+ax.set_title(f'Número de acertos por questão da prova {cor} de {nome_materia}', fontsize=16)
+plt.show()
 
 """## Desafio 6
 Estudar o que as pessoas que estudam o assunto estão discutindo e conclusões que já chegaram sobre a utilização de informações (principalmente sensíveis) para machine learning e data science. Podcast do datahackers também sobre o assunto.
