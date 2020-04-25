@@ -4,6 +4,8 @@
   <strong align="center">Data Science</strong>
 </p>
 </h1> 
+ 
+<br/>
 
 ## About
 Activities of the #QuarentenaDados by [Alura](https://github.com/alura-cursos)
