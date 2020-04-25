@@ -9,6 +9,29 @@
 ## About
 Activities of the #QuarentenaDados by [Alura](https://github.com/alura-cursos)
 
+### Class 1
+  - Python
+  - Pandas
+  - Colab
+  
+### Class 2
+  - Mean
+  - Median
+  - Data visualization
+
+### Class 3
+  - Data visualization
+  - Correlations
+  - Data Exploration
+
+### Class 4
+  - Statistics in ENEM 2018
+
+### Class 5
+  - Regression Model
+  - Machine Learning
+  
+
 ## Datasets
 - Base with [Movie Lens titles and genres](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/ml-latest-small/movies.csv).
 - [Movie Lens notes](https://raw.githubusercontent.com/BiaChacon/data-science-starting/master/datasets/ml-latest-small/ratings.csv) base.
